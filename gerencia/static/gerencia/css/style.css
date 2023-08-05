@@ -5,6 +5,7 @@
     --cor-letra: #000000;
     --cor-cabecalho: #181d31;
     --cor-destaque: #54d64c;
+    --letra-titulo: 'VT323', monospace;
 }
 
 * {
@@ -37,9 +38,9 @@ body {
 }
 
 .cabecalho__menu__link {
-    font-family: var(--letra-texto);
+    font-family: var(--letra-titulo);
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: var(--cor-fundo);
     text-decoration: none;
     transition: 0.5s;
@@ -130,6 +131,7 @@ body {
         0 1px 10px hsla(0, 0%, 0%, 0.2);
     border-radius: 10px;
     transition: all 100ms ease-in-out;
+    font-family: 'Roboto Slab', serif;
 }
 
 .produto:hover {
