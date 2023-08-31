@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Entradas</title>
+        {% include 'gerencia/partials/imports.html' %}
+
+        <link rel="stylesheet" href="{% static 'gerencia/css/style.css' %}" />
+    </head>
+    <body>
+        {% include 'gerencia/partials/header.html' %}
+
+        <main class="home">
+            <div id="home__container">
+                <label>Nome: </label>
+                <label>Marca: </label>
+                <label>Total: </label>
+                <label>Descrição do produto: </label>
+                <label>Preço: </label>
+            </div>
+
+            <a class="cabecalho__menu__link" href="{% url 'relatorios' %}">Cadas</a>
+        </main>
+
+        <footer class="rodape"></footer>
+        <script src="{% static 'gerencia/js/main.js' %}"></script>
+    </body>
+</html>
