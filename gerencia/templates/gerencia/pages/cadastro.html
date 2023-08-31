@@ -13,16 +13,16 @@
     <body>
         {% include 'gerencia/partials/header.html' %}
 
-        <main class="home">
-            <div id="home__container">
-                <label>Nome: </label>
-                <label>Marca: </label>
-                <label>Total: </label>
-                <label>Descrição do produto: </label>
-                <label>Preço: </label>
+        <main class="home">  
+            <div id="novoProduto" class="novoProduto">
+                <input type="text" id="nome" placeholder="Nome do produto" required/>
+                <input type="text" id="Marca" placeholder="Marca do produto" required/>
+                <input type="text" id="Total" placeholder="quantidade do produto" required/>
+                <input type="text" id="Descrição do produto" placeholder="Descrição" required/>
+                <input type="text" id="preco" placeholder="preço" required/>
             </div>
 
-            <a class="cabecalho__menu__link" href="{% url 'relatorios' %}">Cadas</a>
+            <a class="" href="{% url 'entradas' %}">Cadastro</a>
         </main>
 
         <footer class="rodape"></footer>

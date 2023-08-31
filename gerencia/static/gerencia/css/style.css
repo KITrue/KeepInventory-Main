@@ -138,3 +138,18 @@ body {
     transform: scale(1.05) translateY(-5%);
     transition: all 100ms ease-in-out;
 }
+
+/* Botão de cadastro */
+
+.botaoCadastro a {
+  background-color:#44c767;
+}
+
+.novoProduto {
+    flex-direction: column;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    display: inline-flex;
+    position: center;
+}
