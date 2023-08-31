@@ -20,3 +20,7 @@ def relatorios(request):
 
 def saidas(request):
     return render(request, 'gerencia/pages/saidas.html')
+
+
+def cadastro(request):
+    return render(request, 'gerencia/pages/cadastro.html')
