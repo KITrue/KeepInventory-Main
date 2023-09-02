@@ -7,31 +7,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Entradas</title>
         {% include 'gerencia/partials/imports.html' %}
-
+        
         <link rel="stylesheet" href="{% static 'gerencia/css/style.css' %}" />
     </head>
     <body>
         {% include 'gerencia/partials/header.html' %}
 
         <main class="home">
-            <div id="home__container">
-                <form action="" class="home__input__estilo">
-                    <input
-                        class="home__input"
-                        id="barra_de_pesquisa"
-                        onkeyup="pesquisa_produto()"
-                        type="text"
-                    />
-                    <button class="home__search__button"><i class="fa-solid fa-magnifying-glass"></i></button>    
-                </form> 
+            <div class="filtro">
+                <div id="home__container">
+                    <form action="" class="home__input__estilo">
+                        <input
+                            class="home__input"
+                            id="barra_de_pesquisa"
+                            onkeyup="pesquisa_produto()"
+                            type="text"
+                        />
+                        <button class="home__search__button"><i class="fa-solid fa-magnifying-glass"></i></button>    
+                    </form> 
+                </div>
+                <a id="cadastrar" class="botaoCadastro" href="{% url 'cadastro' %}"><button class="botaoEntrada">+</button></a>
             </div>
-
             <div class="lista">
                 <ul>
-                    <li class="produto">Rexona</li>
-                    <li class="produto">Sabonete</li>
-                    <li class="produto">escova de dentes</li>
-                    <li class="produto">pente de cabelo</li>
+                    <li class="produto"><img src="gerencia/images/desodorante.png">Rexona</li>
+                    <li class="produto"><img src="gerencia/images/sabonete.png">Sabonete</li>
+                    <li class="produto"><img src="gerencia/images/escova-de-dentes.png">escova de dentes</li>
+                    <li class="produto"><img src="gerencia/images/pente-de-cabelo.png">pente de cabelo</li>
                 </ul>
             </div>
         </main>

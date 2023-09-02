@@ -138,3 +138,80 @@ body {
     transform: scale(1.05) translateY(-5%);
     transition: all 100ms ease-in-out;
 }
+
+/* ---- Parte de cadastro ---- */
+
+input, select, textarea, button{
+    border-radius: 5px;
+}
+fieldset {
+    border:0;
+}
+
+.pagina{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 300px;
+}
+
+.campo{
+    /* height: 200px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.campo input[type="text"] {
+    padding: 0.5em;
+    border: 1px solid #000000;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    margin: 5px;
+    font-size: 15px;
+}
+
+.botao {
+    font-size: 1.2em;
+    background: var(--cor-destaque);
+    border-radius: 10px;
+    color: #000000;
+    padding: 0.2em 0.6em;
+    
+}
+
+.botaoVermelho {
+    font-size: 1.2em;
+    background: red;
+    border-radius: 10px;
+    color: #000000;
+    padding: 0.2em 0.6em;
+    
+}
+
+.botao:hover {
+    background: green;
+}
+
+.botaoEntrada {
+    font-size: 1.2em;
+    background: var(--cor-destaque);
+    border-radius: 10px;
+    color: #000000;
+    padding: 0.2em 0.6em;
+}
+
+.filtro {
+    width: 100vw;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
