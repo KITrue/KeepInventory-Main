@@ -24,6 +24,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # recipes teste
     path('', include('gerencia.urls'))  # Main-Home
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
