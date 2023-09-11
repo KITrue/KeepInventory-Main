@@ -50,8 +50,7 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'projeto.wsgi.app'
+WSGI_APPLICATION = 'projeto.wsgi.application'
 
 DATABASES = {
     'default': {
