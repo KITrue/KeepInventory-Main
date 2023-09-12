@@ -137,11 +137,12 @@ body {
 .produto:hover {
     transform: scale(1.05) translateY(-5%);
     transition: all 100ms ease-in-out;
+    cursor: pointer;
 }
 
 .produto img {
-    width: 14rem;
-    height: 14rem;
+    width: 6rem;
+    height: 6rem;
 }
 
 /* ---- Parte de cadastro ---- */

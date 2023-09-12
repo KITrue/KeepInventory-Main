@@ -18,9 +18,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from gerencia.views import ProdutosViewSet
+from rest_framework import routers
 
+
+router = routers.DefaultRouter()
+router.register(r'produtos', ProdutosViewSet)
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),  # recipes teste
     path('', include('gerencia.urls'))  # Main-Home
 ]
