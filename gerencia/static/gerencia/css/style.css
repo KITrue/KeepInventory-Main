@@ -139,6 +139,11 @@ body {
     transition: all 100ms ease-in-out;
 }
 
+.produto img {
+    width: 14rem;
+    height: 14rem;
+}
+
 /* ---- Parte de cadastro ---- */
 
 input, select, textarea, button{
@@ -214,4 +219,13 @@ fieldset {
     display: flex;
     justify-content: center;
     margin: 10px;
+}
+ 
+
+
+/* ---- Parte das imagens ---- */
+
+.imagens_entradas {
+    width: 50px;
+
 }
