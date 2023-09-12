@@ -26,7 +26,7 @@ router = routers.DefaultRouter()
 router.register(r'produtos', ProdutosViewSet)
 
 urlpatterns = [
-    # path('', include(router.urls)),
+    path('', include(router.urls)),
     path('autentica/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),  # recipes teste
     path('', include('gerencia.urls'))  # Main-Home
