@@ -33,27 +33,17 @@
                     <a href="">
                         <div class="produto" >
                             <img src={% static 'gerencia/images/desodorante.png' %} alt="">
-                            <h3>desodorante</h3>
+                            <h3>{{produto.nome}}</h3>
                         </div>
                     </a>
+                    {% for produto in produtos%}
                     <a href="">
                         <div class="produto">
                             <img src={% static 'gerencia/images/escova-de-dente.png' %} alt="">
-                            <h3>escova de dentes</h3>
+                            <h3>{{produto.nome}} </h3>
                         </div>
                     </a>
-                    <a >
-                        <div class="produto" href="">
-                            <img src={% static 'gerencia/images/pente-de-cabelo.png' %} alt="">
-                            <h3>pente de cabelo</h3>
-                        </div>
-                    </a>
-                    <a >
-                        <div class="produto" href="">
-                            <img src={% static 'gerencia/images/sabonete.png' %} alt="">
-                            <h3>sabonete</h3>
-                        </div>
-                    </a>
+                    {% endfor %}
                     
             </div>
         </main>

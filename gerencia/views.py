@@ -29,7 +29,25 @@ def relatorios(request):
 
 def saidas(request):
     return render(request, 'gerencia/pages/saidas.html')
-
+    
 
 def cadastro(request):
     return render(request, 'gerencia/pages/cadastro.html')
+    novo_produto = Produtos()
+    # Salvando novo produto para banco de dados
+    
+    novo_produto.nome = request.POST('nome')
+    novo_produto.marca = request.POST('marca')
+    novo_produto.total = request.POST('total')
+    novo_produto.descricao = request.POST('descricao')
+    novo_produto.preco = request.POST('preco')
+    novo_produto.save()
+
+    #exibir todos os usuariosjá cadastrados em uma nova página
+    produtos = {
+        'produtos': Produtos.objects.all()
+    
+    }
+    return render(request, 'gerencia/pages/cadastro.html', produtos)
+    
+

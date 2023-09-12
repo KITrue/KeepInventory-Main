@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from gerencia.views import home, entradas, produtos, relatorios, saidas, cadastro
 
@@ -8,5 +8,5 @@ urlpatterns = [
     path('produtos/', produtos, name='produtos'),
     path('relatorios/', relatorios, name='relatorios'),
     path('saidas/', saidas, name='saidas'),
-    path('cadastro/', cadastro, name='cadastro')
+    path('cadastro/', cadastro, name='cadastro'),
 ]

@@ -8,7 +8,13 @@ class Produtos(models.Model):
     nome = models.CharField(
         max_length=65, null=False, blank=False
     )
-    descricao = models.TextField()
+    marca = models.CharField(
+        max_length=65, null=False, blank=False
+    )
+    descricao = models.TextField(
+        max_length=255
+    )
+
     preco = models.DecimalField(
         max_digits=8, decimal_places=2, null=False, blank=False
     )
