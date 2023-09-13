@@ -15,7 +15,7 @@
         <h1 class="titulo"> Cadastro de produto </h1>
         <div class="pagina">
                 <fieldset class="grupo">
-                    <form action="{% url 'cadastro' %}" method="POST">
+                    <form action="{% url 'cadastro' %}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}	
                         <div class="campo">
                             <input type="text" name="nome" id="nome" placeholder="Nome do produto" required/>
