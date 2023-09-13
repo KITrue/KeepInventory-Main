@@ -29,7 +29,7 @@ def relatorios(request):
 
 def saidas(request):
     return render(request, 'gerencia/pages/saidas.html')
-    
+
 
 def cadastro(request):
     if request.method == 'POST':
@@ -49,5 +49,14 @@ def cadastro(request):
     return render(request, 'gerencia/pages/cadastro.html')
 
 # Se desejar, você pode criar uma página de sucesso após o cadastro
+
+
 def pagina_sucesso(request):
     return render(request, 'gerencia/pages/entradas.html')
+
+# Mostrar itens muito fodas
+
+
+def lista_produtos(request):
+    produtos = Produtos.objects.all()
+    return render(request, 'gerencia/pages/entradas.html', {'produtos': produtos})
