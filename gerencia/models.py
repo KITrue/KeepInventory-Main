@@ -21,6 +21,11 @@ class Produtos(models.Model):
     quantidade = models.IntegerField(
         default=0, null=False, blank=False
     )
+    imagem = models.ImageField(
+        upload_to='static/gerencia/images',  # A pasta onde as imagens serão armazenadas
+        null=True,  # Pode ser nulo, se desejar
+        blank=True,  # Pode ser em branco, se desejar
+    )
 
 
 class Fornecedores(models.Model):
