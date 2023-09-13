@@ -14,14 +14,13 @@
         {% include 'gerencia/partials/header.html' %}
         <h1 class="titulo"> Cadastro de produto </h1>
         <div class="pagina">
-            <form>
                 <fieldset class="grupo">
-                    <form action="{% url 'entradas' %}" method="POST" method="post">
+                    <form action="{% url 'cadastro' %}" method="POST">
                         {% csrf_token %}	
                         <div class="campo">
                             <input type="text" name="nome" id="nome" placeholder="Nome do produto" required/>
                             <input type="text" name="marca" id="Marca" placeholder="Marca do produto" required/>
-                            <input type="text" name="total" id="Total" placeholder="quantidade do produto" required/>
+                            <input type="text" name="quantidade" id="Total" placeholder="quantidade do produto" required/>
                             <input type="text" name="descricao" id="Descrição do produto" placeholder="Descrição" required/>
                             <input type="text" name="preco" id="preco" placeholder="preço" required/>
                             <button class="botao" type="submit">Cadastro</button>
@@ -29,7 +28,6 @@
                         </div>
                     </form>      
                 </fieldset>
-            </form>
     </div> 
 
         <footer class="rodape"></footer>
