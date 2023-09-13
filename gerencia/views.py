@@ -16,7 +16,8 @@ def home(request):
 
 
 def entradas(request):
-    return render(request, 'gerencia/pages/entradas.html')
+    produtos = Produtos.objects.all()
+    return render(request, 'gerencia/pages/entradas.html', {'produtos': produtos})
 
 
 def produtos(request):
@@ -53,10 +54,3 @@ def cadastro(request):
 
 def pagina_sucesso(request):
     return render(request, 'gerencia/pages/entradas.html')
-
-# Mostrar itens muito fodas
-
-
-def lista_produtos(request):
-    produtos = Produtos.objects.all()
-    return render(request, 'gerencia/pages/entradas.html', {'produtos': produtos})

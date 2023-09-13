@@ -30,21 +30,19 @@
             </div>
             <div class="lista">
                 <div class="lista">
-                    <a href="">
-                        <div class="produto" >
-                            <img src={% static 'gerencia/images/desodorante.png' %} alt="">
-                            <h3>{{produto.nome}}</h3>
-                        </div>
-                    </a>
-                    {% for produto in produtos%}
+
+                    <!-- os dados puxados do banco de dados tem que entrar aqui, usando esse exemplo abaixo como base-->
+                    {% for produto in produtos %}
                     <a href="">
                         <div class="produto">
-                            <img src={% static 'gerencia/images/escova-de-dente.png' %} alt="">
-                            <h3>{{produto.nome}} </h3>
+                            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                            <h3>{{ produto.nome }}</h3>
                         </div>
                     </a>
                     {% endfor %}
-                    
+                    <!-- Exemplo acima -->
+
+                </div>
             </div>
         </main>
 
