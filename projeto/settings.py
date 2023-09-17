@@ -1,6 +1,5 @@
 
 from pathlib import Path
-import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -103,8 +102,6 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
-MIDIA_URL = '/static/gerencia/images'
-MIDIA_ROOT = os.path.join(BASE_DIR, '/static/gerencia/images')
 
 
 # Default primary key field type

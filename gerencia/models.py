@@ -1,7 +1,5 @@
 from django.db import models
 
-def upload_Image(instance, filename):
-    return f"{instance.id} {filename}"
 
 class Produtos(models.Model):
     id = models.BigAutoField(
