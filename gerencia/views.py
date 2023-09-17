@@ -35,13 +35,12 @@ def saidas(request):
 def cadastro(request):
     if request.method == 'POST':
         # Criar um novo objeto Produto com os dados do formulário
-        novo_produto = Produtos(request.POST, request.FILES)
+        novo_produto = Produtos()
         novo_produto.nome = request.POST.get('nome')
         novo_produto.marca = request.POST.get('marca')
         novo_produto.quantidade = request.POST.get('quantidade')
         novo_produto.descricao = request.POST.get('descricao')
         novo_produto.preco = request.POST.get('preco')
-        novo_produto.imagem = request.POST.get('imagem')
         novo_produto.save()
 
         # Redirecionar para a página de sucesso ou qualquer outra página desejada
