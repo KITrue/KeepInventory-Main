@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Produtos(models.Model):
-    id = models.BigAutoField(
+    id = models.AutoField(
         primary_key=True
     )
     nome = models.CharField(
