@@ -41,6 +41,7 @@ def cadastro(request):
         novo_produto.quantidade = request.POST.get('quantidade')
         novo_produto.descricao = request.POST.get('descricao')
         novo_produto.preco = request.POST.get('preco')
+        novo_produto.imagem = request.FILES.get('imagem')
         novo_produto.save()
 
         # Redirecionar para a página de sucesso ou qualquer outra página desejada

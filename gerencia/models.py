@@ -1,7 +1,5 @@
 from django.db import models
 
-def upload_Image(instance, filename):
-    return f"{instance.id} {filename}"
 
 class Produtos(models.Model):
     id = models.AutoField(
@@ -24,7 +22,8 @@ class Produtos(models.Model):
         default=0, null=False, blank=False
     )
     imagem = models.ImageField(
-        upload_to='static/gerencia/images',  # A pasta onde as imagens serão armazenadas
+        # A pasta onde as imagens serão armazenadas
+        upload_to='gerencia/static/gerencia/images',
         null=True,  # Pode ser nulo, se desejar
         blank=True,  # Pode ser em branco, se desejar
     )
