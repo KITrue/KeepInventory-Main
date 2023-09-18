@@ -103,7 +103,7 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
-MIDIA_URL = '/static/gerencia/images'
+MIDIA_URL = '/static/'
 MIDIA_ROOT = BASE_DIR / 'static/gerencia/images'
 
 
