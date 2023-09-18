@@ -104,9 +104,6 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
 
-MIDIA_URL = '/static/gerencia/images'
-MIDIA_ROOT = BASE_DIR / 'static/gerencia/images'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

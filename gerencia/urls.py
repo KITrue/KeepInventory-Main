@@ -11,4 +11,4 @@ urlpatterns = [
     path('saidas/', saidas, name='saidas'),
     path('cadastro/', cadastro, name='cadastro'),
 
-] + static(settings.MIDIA_URL, document_root=settings.MIDIA_ROOT)
+]
