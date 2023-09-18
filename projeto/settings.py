@@ -1,5 +1,6 @@
 
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -100,10 +101,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'gerencia/static/'
 STATIC_URL = '/static/'
-MIDIA_URL = '/static/'
-MIDIA_ROOT = BASE_DIR / 'static/gerencia/images'
+MIDIA_URL = '/gerencia/static/gerencia/images'
+MIDIA_ROOT = BASE_DIR / 'gerencia/static/gerencia/images'
 
 
 # Default primary key field type
