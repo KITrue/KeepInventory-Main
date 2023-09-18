@@ -23,7 +23,7 @@ class Produtos(models.Model):
     )
     imagem = models.ImageField(
         # A pasta onde as imagens serão armazenadas
-        upload_to='gerencia/static/gerencia/images',
+        upload_to='static/gerencia/images',
         null=True,  # Pode ser nulo, se desejar
         blank=True,  # Pode ser em branco, se desejar
     )
