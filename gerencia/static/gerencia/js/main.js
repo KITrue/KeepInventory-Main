@@ -12,4 +12,3 @@ function pesquisa_produto() {
         }
     }
 }
-

@@ -10,8 +10,4 @@ urlpatterns = [
     path('cadastro/', cadastro, name='cadastro'),
     path('editar/<int:id>', editar, name='editar'),
     path('deletar/<int:id>', deletar, name='deletar')
-
 ]
-
-
-

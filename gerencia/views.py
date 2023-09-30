@@ -56,16 +56,15 @@ def pagina_sucesso(request):
 
 def deletar(request, id):
     delete_produtos = Produtos.objects.get(id=id)
-    if request.method == 'POST':
-        delete_produtos.delete()
-        return redirect('entradas')
+    delete_produtos.delete()
+    return redirect('entradas')
 
 
 # ----------------------------------- API - Editar ----------------------------------- #
 
 # def editar(request, id):
 #     editar_produto = Produtos.objects.get(id=id)
-#     return render(request, "entradas.html", {"produtos": editar_produto})
+#     return render(request, {"produtos": editar_produto})
 
 
 def editar(request, id):
