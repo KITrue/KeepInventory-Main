@@ -12,3 +12,6 @@ urlpatterns = [
     path('deletar/<int:id>', deletar, name='deletar')
 
 ]
+
+
+

@@ -63,31 +63,32 @@ def deletar(request, id):
 
 # ----------------------------------- API - Editar ----------------------------------- #
 
+# def editar(request, id):
+#     editar_produto = Produtos.objects.get(id=id)
+#     return render(request, "entradas.html", {"produtos": editar_produto})
+
+
 def editar(request, id):
-    editar_produto = Produtos.objects.get(id=id)
-    return render(request, "entradas.html", {"produtos": editar_produto})
+    if request.method == 'POST':
+        produto = Produtos.objects.get(id=id)
 
+        vnome = request.POST.get('nome')
+        produto.nome = vnome
 
-def atualizar(request, id):
-    produto = Produtos.objects.get(id=id)
+        vmarca = request.POST.get('marca')
+        produto.marca = vmarca
 
-    vnome = request.POST.get('nome')
-    produto.nome = vnome
+        vquantidade = request.POST.get('quantidade')
+        produto.quantidade = vquantidade
 
-    vmarca = request.POST.get('marca')
-    produto.marca = vmarca
+        vdescricao = request.POST.get('descricao')
+        produto.descricao = vdescricao
 
-    vquantidade = request.POST.get('quantidade')
-    produto.quantidade = vquantidade
+        vpreco = request.POST.get('preco')
+        produto.preco = vpreco
 
-    vdescricao = request.POST.get('descricao')
-    produto.descricao = vdescricao
+        # vimagem = request.FILES.get('imagem')
 
-    vpreco = request.POST.get('preco')
-    produto.preco = vpreco
-
-    # vimagem = request.FILES.get('imagem')
-
-    produto.save()
+        produto.save()
 
     return redirect('entradas')
