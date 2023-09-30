@@ -249,3 +249,132 @@ fieldset {
     width: 50px;
 
 }
+
+/* ---- Modal ---- */
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content{
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #888;
+    width: 400px;
+}
+
+.close{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal_info{
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px;
+}
+.model_container_text {
+    padding-bottom: 5px;
+    font: 20px;
+}
+
+.model_container_descricao {
+    font: 20px;
+}
+
+.botaoEditar {
+    font-size: 1.2em;
+    background: var(--cor-destaque);
+    border-radius: 10px;
+    color: #000000;
+    padding: 0.2em 0.6em;
+    margin-right: 1vw;
+}
+
+.botaoEditar:hover {
+    background: green;
+}
+
+.botaoExcluir {
+    font-size: 1.2em;
+    background: red;
+    border-radius: 10px;
+    color: #000000;
+    padding: 0.2em 0.6em;
+}
+
+.modalFuncao{
+    display: block;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal_funcao_content{
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #888;
+    width: fit-content;
+    height: fit-content;
+}
+
+.formularioEdicao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}	
+
+.modal_botoes_editar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}	
+
+.botaoConfirmar {
+    font-size: 1.2em;
+    background: var(--cor-destaque);
+    border-radius: 10px;
+    color: #000000;
+    padding: 0.2em 0.6em;
+    margin-right: 1vw;
+}	
+
+.botaoConfirmar:hover {
+    background: green;
+}
+
+.botaoCancelar {
+    font-size: 1.2em;
+    background: red;
+    border-radius: 10px;
+    color: #000000;
+    padding: 0.2em 0.6em;
+}

@@ -28,18 +28,66 @@
                 </div>
                 <a id="cadastrar" class="botaoCadastro" href="{% url 'cadastro' %}"><button class="botaoEntrada">+</button></a>
             </div>
-            <div class="lista">
-                <div class="lista">
-
-                    {% for produto in produtos %}
-                    <a href="">
+            <div class="lista"> 
+                {% for produto in produtos %}
+                    <div 
+                        onclick="AbrirModal(
+                            '{{produto.nome}}', 
+                            '{{produto.preco}}', 
+                            '{{produto.descricao}}', 
+                            '{{produto.marca}}',
+                            '{{produto.quantidade}}', 
+                            '{{produto.imagem}}')" 
+                        class="BotaoModal">
                         <div class="produto">
                             <img src="../{{produto.imagem}}">
                             <h3>{{ produto.nome }}</h3>
                         </div>
-                    </a>
-                    {% endfor %}
-
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- Modal do Produto -->
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="document.getElementById('modal').style.display = 'none'">&times;</span>
+                    <div class="modal_container">
+                        <div class="modal_imagem">
+                            <img id="imagem" src="" alt="">
+                        </div>
+                        <div class="modal_info">
+                            <h2 id="nome" class="model_container_text">Nome: </h2>
+                            <p id="descricao" class="model_container_descricao"></p>
+                            <p id="preco" class="model_container_descricao"></p>
+                            <p id="quantidade" class="model_container_descricao"></p>
+                            <p id="marca" class="model_container_descricao"></p>
+                        </div>
+                        <div class="modal_botoes">
+                            <button onclick="FuncaoModal()" class="botaoEditar">Editar</button>
+                            <button onclick="FuncaoModal()" class="botaoExcluir">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <!-- Modal editar -->
+            <div id="modal_funcao" class="modalFuncao">
+                <div class="modal_funcao_content">
+                    <span class="close" onclick="document.getElementById('modal_funcao').style.display = 'none'">&times;</span>
+                    <div class="formularioEdicao">
+                        <h2>Editar</h2>
+                        <p class="model_container_text">Nome: </p>
+                        <input type="text" id="nomeEditar">
+                        <p >Preço: </p>
+                        <input type="text" id="precoEditar">
+                        <p>Descrição: </p>
+                        <input type="text" id="descricaoEditar">
+                        <p>Marca: </p>
+                        <input type="text" id="marcaEditar">
+                        <p>Quantidade: </p>
+                        <input type="text" id="quantEditar">
+                        <div class="modal_botoes_editar">
+                            <button class="botaoConfirmar">Confirmar</button>
+                            <button class="botaoCancelar">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </main>
@@ -48,3 +96,31 @@
         <script src="..{% static 'gerencia/js/main.js' %}"></script>
     </body>
 </html>
+
+<script>
+    function AbrirModal(nome, preco, descricao, marca, quantidade, imagem){
+
+        var nomeModal = nome;
+        var precoModal = preco;
+        var descricaoModal = descricao;
+        var marcaModal = marca;
+        var quantidadeModal = quantidade;
+        var imagemModal = imagem;
+
+        document.getElementById('modal').style.display = 'block'
+        document.getElementById('imagem').src = '../' + imagemModal
+        document.getElementById('nome').innerText = 'Nome: ' + nomeModal
+        document.getElementById('descricao').innerText = descricaoModal
+        document.getElementById('preco').innerText = 'R$ ' + precoModal
+        document.getElementById('quantidade').innerText = 'Quantidade: ' + quantidadeModal
+        document.getElementById('marca').innerText = marca
+
+    }
+
+    function FuncaoModal(){
+        console.log("aaaa")
+        document.getElementById('modal_funcao').style.display = 'block'
+
+        document.getElementById('nomeEditar').value += nomeModal
+    }
+</script>
