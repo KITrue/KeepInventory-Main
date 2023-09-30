@@ -40,7 +40,7 @@ def cadastro(request):
         novo_produto.save()
 
         # Redirecionar para a página de sucesso ou qualquer outra página desejada
-        return redirect('.')
+        return redirect('entradas')
 
     # Se a requisição não for POST, apenas renderize o formulário
     return render(request, 'gerencia/pages/cadastro.html')
@@ -51,4 +51,43 @@ def cadastro(request):
 def pagina_sucesso(request):
     return render(request, 'gerencia/pages/entradas.html')
 
+# ----------------------------------- API - Excluir ----------------------------------- #
+
+
+def deletar(request, id):
+    delete_produtos = Produtos.objects.get(id=id)
+    if request.method == 'POST':
+        delete_produtos.delete()
+        return redirect('entradas')
+
+
 # ----------------------------------- API - Editar ----------------------------------- #
+
+def editar(request, id):
+    editar_produto = Produtos.objects.get(id=id)
+    return render(request, "entradas.html", {"produtos": editar_produto})
+
+
+def atualizar(request, id):
+    produto = Produtos.objects.get(id=id)
+
+    vnome = request.POST.get('nome')
+    produto.nome = vnome
+
+    vmarca = request.POST.get('marca')
+    produto.marca = vmarca
+
+    vquantidade = request.POST.get('quantidade')
+    produto.quantidade = vquantidade
+
+    vdescricao = request.POST.get('descricao')
+    produto.descricao = vdescricao
+
+    vpreco = request.POST.get('preco')
+    produto.preco = vpreco
+
+    # vimagem = request.FILES.get('imagem')
+
+    produto.save()
+
+    return redirect('entradas')
