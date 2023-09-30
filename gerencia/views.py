@@ -20,16 +20,11 @@ def entradas(request):
     return render(request, 'gerencia/pages/entradas.html', {'produtos': produtos})
 
 
-def produtos(request):
-    return render(request, 'gerencia/pages/produtos.html')
-
-
 def relatorios(request):
     return render(request, 'gerencia/pages/relatorios.html')
 
 
-def saidas(request):
-    return render(request, 'gerencia/pages/saidas.html')
+# ----------------------------------- API - Cadastrar ----------------------------------- #
 
 
 def cadastro(request):
@@ -55,3 +50,5 @@ def cadastro(request):
 
 def pagina_sucesso(request):
     return render(request, 'gerencia/pages/entradas.html')
+
+# ----------------------------------- API - Editar ----------------------------------- #
