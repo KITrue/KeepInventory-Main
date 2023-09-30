@@ -72,10 +72,10 @@
                             <button onclick="EditarProduto()" class="botaoEditar">
                                 Editar
                             </button>
-                            <button
-                                onclick="excluir()"
+                            <a
+                                href=""
                                 class="botaoExcluir"
-                                id="btnExcluir">Excluir</button>
+                                id="btnExcluir">Excluir</a>
                         </div>
                     </div>
                 </div>
@@ -141,8 +141,8 @@
         document.getElementById('preco').innerText = 'R$ ' + Modal.preco
         document.getElementById('quantidade').innerText = 'Quantidade: ' + Modal.quantidade
         document.getElementById('marca').innerText = 'Marca: ' + Modal.marca
-
-        var excluir = '{% url 'deletar' 0 %}'.replace('0', Modal.id)
+        
+        document.getElementById('btnExcluir').href = '{% url 'deletar' 0 %}'.replace('0', Modal.id)
     }
 
     function EditarProduto(){
@@ -157,10 +157,6 @@
         document.getElementById('quantidadeEditar').value = Modal.quantidade
 
         document.getElementById('formulario').action = '{% url 'editar' 0 %}'.replace('0', Modal.id)
-    }
-
-    function excluir(){
-        window.location.href = excluir;
     }
 
     function cancelar(){

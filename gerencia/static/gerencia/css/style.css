@@ -314,6 +314,8 @@ fieldset {
 }
 
 .botaoEditar:hover {
+    transition: ease-in-out 0.3s;
+    color: #fffFff;
     background: green;
 }
 
@@ -324,6 +326,15 @@ fieldset {
     color: #000000;
     cursor: pointer;
     padding: 0.2em 0.6em;
+    text-decoration: none;
+    border: 1px solid #000000;
+    
+}
+
+.botaoExcluir:hover {
+    transition: ease-in-out 0.3s;
+    color: #fffFff;
+    background: rgb(116, 0, 0);
 }
 
 .modalFuncao{
