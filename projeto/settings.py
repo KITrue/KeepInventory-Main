@@ -1,6 +1,7 @@
 
 from pathlib import Path
 import os
+import mimetypes
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,9 +9,7 @@ SECRET_KEY = 'django-insecure-083*-&)m0mk5lhhynib=*5qg#)_9is+4g58*74+#2t(4vmlw7k
 
 DEBUG = True
 
-if DEBUG:
-    import mimetypes
-    mimetypes.add_type("image/png", "text/html", True)
+mimetypes.add_type("image/png", "text/html")
 
 ALLOWED_HOSTS = ['*']
 
