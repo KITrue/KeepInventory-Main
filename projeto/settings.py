@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-083*-&)m0mk5lhhynib=*5qg#)_9is+4g58*74+#2t(4vmlw7k
 
 DEBUG = True
 
-mimetypes.add_type("image/png", "text/html")
+mimetypes.add_type("text/html", ".html", True)
 
 ALLOWED_HOSTS = ['*']
 
