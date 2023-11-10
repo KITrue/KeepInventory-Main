@@ -15,6 +15,10 @@ def home(request):
     return render(request, 'gerencia/pages/home.html')
 
 
+def lte(request):
+    return render(request, 'adminlte/starter.html')
+
+
 def entradas(request):
     produtos = Produtos.objects.all()
     return render(request, 'gerencia/pages/entradas.html', {'produtos': produtos})
