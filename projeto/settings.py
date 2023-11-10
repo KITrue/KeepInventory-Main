@@ -10,7 +10,7 @@ DEBUG = True
 
 if DEBUG:
     import mimetypes
-    mimetypes.add_type("image/png", ".png", True)
+    mimetypes.add_type("image/png", "text/html", True)
 
 ALLOWED_HOSTS = ['*']
 
