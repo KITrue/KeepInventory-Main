@@ -8,6 +8,10 @@ SECRET_KEY = 'django-insecure-083*-&)m0mk5lhhynib=*5qg#)_9is+4g58*74+#2t(4vmlw7k
 
 DEBUG = True
 
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type("image/png", ".png", True)
+
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = ['https://*.railway.app/']
@@ -101,8 +105,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+
 
 
 # Default primary key field type
