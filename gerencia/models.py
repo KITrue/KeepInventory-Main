@@ -27,6 +27,7 @@ class Produtos(models.Model):
         null=True,  # Pode ser nulo, se desejar
         blank=True,  # Pode ser em branco, se desejar
     )
+    data_entrada = models.DateTimeField(auto_now_add=True)
 
 
 class Fornecedores(models.Model):
