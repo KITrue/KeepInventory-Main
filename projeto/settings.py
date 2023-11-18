@@ -1,6 +1,4 @@
-
 from pathlib import Path
-import os
 import mimetypes
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,10 +6,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-083*-&)m0mk5lhhynib=*5qg#)_9is+4g58*74+#2t(4vmlw7k'
 
 DEBUG = True
-if DEBUG is True:
-    mimetypes.add_type("text/html", ".html", True)
-    mimetypes.add_type("application/javascript", ".js", True)
-    mimetypes.add_type("text/css", ".css", True)
+
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,7 +34,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
+
 
 ROOT_URLCONF = 'projeto.urls'
 
@@ -106,10 +104,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = '/static/'
 
-
+mimetypes.add_type('text/html', '.html')
+mimetypes.add_type('text/css', '.css')
+mimetypes.add_type('application/javascript', '.js')
+# mimetypes.add_type("image/png", ".png")
+# mimetypes.add_type("text/html", ".html")
+# mimetypes.add_type("application/javascript", ".js")
+# mimetypes.add_type("text/css", ".css")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

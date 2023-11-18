@@ -16,7 +16,7 @@ def home(request):
 
 
 def lte(request):
-    return render(request, 'adminlte/starter.html')
+    return render(request, 'adminlte/index.html')
 
 
 def entradas(request):
