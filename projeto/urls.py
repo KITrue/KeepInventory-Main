@@ -29,7 +29,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('autentica/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),  # recipes teste
-    path('', include('gerencia.urls'))  # Main-Home
+    path('', include('gerencia.urls')),  # Main-Home
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
