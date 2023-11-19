@@ -94,7 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -107,13 +107,7 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = '/static/'
 
-# mimetypes.add_type('text/html', '.html')
-# mimetypes.add_type('text/css', '.css')
-# mimetypes.add_type('application/javascript', '.js')
-# mimetypes.add_type("image/png", ".png")
-# mimetypes.add_type("text/html", ".html")
-# mimetypes.add_type("application/javascript", ".js")
-# mimetypes.add_type("text/css", ".css")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
