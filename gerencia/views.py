@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework import viewsets
-from .models import Produtos
+from .models import Produtos, LogEstoque
 from .api.serializers import ProdutosSerializer
+from django.http import HttpResponseBadRequest
+from datetime import datetime
+from django.views.generic import ListView
 
 # from django.http import HttpResponse
 
@@ -60,7 +63,10 @@ def pagina_sucesso(request):
 
 def deletar(request, id):
     delete_produtos = Produtos.objects.get(id=id)
-    delete_produtos.delete()
+    # delete_produtos.delete()
+    delete_produtos.quantidade = 0
+    delete_produtos.data_saida = datetime.now()
+    delete_produtos.save()
     return redirect('entradas')
 
 
@@ -88,10 +94,67 @@ def editar(request, id):
         produto.descricao = vdescricao
 
         vpreco = request.POST.get('preco')
-        produto.preco = vpreco
+        produto.preco = vpreco 
 
         # vimagem = request.FILES.get('imagem')
 
         produto.save()
 
     return redirect('entradas')
+
+
+# ----------------------------------- API - Adicionar e retirar ----------------------------------- #
+
+
+def adicionar(request, id):
+    
+    produto = get_object_or_404(Produtos, id=id)
+    logproduto = LogEstoque(produto_id=id)
+
+    vquantidade = request.POST.get('add_value')
+    vquantidade = int(vquantidade)
+
+    if vquantidade < 0:
+        return HttpResponseBadRequest("A quantidade não pode ser negativa.")
+
+    produto.quantidade += vquantidade
+
+    logproduto.tipo = 'Entrada'
+    logproduto.quantidade = vquantidade
+
+    produto.save()
+    logproduto.save()
+
+    return redirect('entradas')
+        
+def retirar(request, id):
+    produto = get_object_or_404(Produtos, id=id)
+    logproduto = LogEstoque(produto_id=id)
+
+    vquantidade = request.POST.get('ret_value')
+    vquantidade = int(vquantidade)
+
+    if vquantidade < 0:
+        return HttpResponseBadRequest("A quantidade não pode ser negativa.")
+
+    if vquantidade > produto.quantidade:
+        return HttpResponseBadRequest("A quantidade a ser retirada é maior do que a quantidade disponível.")
+
+    produto.quantidade -= vquantidade
+
+    logproduto.tipo = 'Saida'
+    logproduto.quantidade = vquantidade
+
+    produto.save()
+    logproduto.save()
+
+    return redirect('entradas')
+    
+
+# ----------------------------------- API - ListView Log ----------------------------------- #
+
+
+class LogEstoqueView(ListView):
+    model = LogEstoque
+    template_name = "relatorios.html"
+    obg_name = 'registros'

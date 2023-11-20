@@ -28,6 +28,27 @@ class Produtos(models.Model):
         blank=True,  # Pode ser em branco, se desejar
     )
     data_entrada = models.DateTimeField(auto_now_add=True)
+    data_saida = models.DateTimeField(null=True, blank=True) 
+
+
+class LogEstoque(models.Model):
+    produto = models.ForeignKey(
+        Produtos, on_delete=models.CASCADE
+    )
+    quantidade = models.PositiveIntegerField(
+        blank=True,
+        null=True
+    )
+    tipo = models.CharField(
+        max_length=10, 
+        choices=[
+            ('entrada', 'Entrada'), 
+            ('saida', 'Saída')
+        ]
+    )
+    data_movimentacao = models.DateTimeField(
+        auto_now_add=True
+    )
 
 
 class Fornecedores(models.Model):

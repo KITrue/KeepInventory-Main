@@ -2,123 +2,112 @@
 {% load tz %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>KITrue | Entries</title>
-        {% include 'gerencia/partials/imports.html' %}
-        <link rel="shortcut icon" type="image/ico" href="{% static 'gerencia/images/favicon.ico' %}" >
-        <link rel="stylesheet" href="..{% static 'gerencia/css/style.css' %}" />
-    </head>
-    <body>
-        {% include 'gerencia/partials/header.html' %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KITrue | Entries</title>
+    {% include 'gerencia/partials/imports.html' %}
+    <link rel="shortcut icon" type="image/ico" href="{% static 'gerencia/images/favicon.ico' %}" />
+    <link rel="stylesheet" href="..{% static 'gerencia/css/style.css' %}" />
+  </head>
+  <body>
+    {% include 'gerencia/partials/header.html' %}
 
-        <main class="home">
-            <div class="filtro">
-                <div id="home__container">
-                    <form action="" class="home__input__estilo">
-                        <input
-                            class="home__input"
-                            id="barra_de_pesquisa"
-                            onkeyup="pesquisa_produto()"
-                            type="text"
-                        />
-                        <button class="home__search__button">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </form>
-                </div>
-                <a
-                    id="cadastrar"
-                    class="botaoCadastro"
-                    href="{% url 'cadastro' %}"
-                    ><button class="botaoEntrada">+</button></a
-                >
-            </div>
-            <div class="lista">
-                {% for produto in produtos %}
-                    <div onclick="AbrirModal(
-                                '{{produto.id}}',
-                                '{{produto.nome}}', 
-                                '{{produto.preco}}', 
-                                '{{produto.descricao}}', 
-                                '{{produto.marca}}',
-                                '{{produto.quantidade}}', 
-                                '{{produto.imagem}}')"
-                        class="BotaoModal">
-                        <div class="produto">
-                            <img src="../{{produto.imagem}}" />
-                            <h3>{{ produto.nome }}</h3>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <!-- Modal do Produto -->
-            <div id="modal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="document.getElementById('modal').style.display = 'none'">&times;</span>
-                    <div class="modal_container">
-                        <div class="modal_imagem">
-                            <img id="imagem" src="" alt="" />
-                        </div>
-                        <div class="modal_info">
-                            <h2 id="nome" class="model_container_text"></h2>
-                            <p id="marca" class="model_container_descricao"></p>
-                            <p id="descricao" class="model_container_descricao"></p>
-                            <p id="quantidade" class="model_container_descricao"></p>
-                            <p id="preco" class="model_container_descricao"></p>
-                        </div>
-                        <div class="modal_botoes" method="POST">
-                            <button onclick="EditarProduto()" class="botaoEditar">
-                                Editar
-                            </button>
-                            <a
-                                href=""
-                                class="botaoExcluir"
-                                id="btnExcluir">Excluir</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal editar -->
-            <div id="modal_funcao" class="modalFuncao">
-                <div class="modal_funcao_content">
-                    <span class="close" onclick="document.getElementById('modal_funcao').style.display = 'none'">&times;</span >
-                    <div class="formularioEdicao">
-                        <form method="POST" id="formulario">
-                            {% csrf_token %}
-                            
-                            <h2>Editar</h2>
-                            <p class="model_container_text">Nome:</p>
-                            <input type="text" id="nomeEditar" name="nome" />
-                            <p>Preço:</p>
-                            <input type="text" id="precoEditar" name="preco"/>
-                            <p>Descrição:</p>
-                            <input type="text" id="descricaoEditar" name="descricao"/>
-                            <p>Marca:</p>
-                            <input type="text" id="marcaEditar" name="marca"/>
-                            <p>Quantidade:</p>
-                            <input type="text" id="quantidadeEditar" name="quantidade"/>
-                            <div class="modal_botoes_editar">
-                                <button
-                                    class="botaoConfirmar"
-                                    type="submit">
-                                    Confirmar
-                                </button>
-                                <button class="botaoCancelar" 
-                                    onclick="cancelar()"
-                                    type="button">Cancelar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </main>
+    <main class="home">
+      <div class="filtro">
+        <div id="home__container">
+          <form action="" class="home__input__estilo">
+            <input class="home__input" id="barra_de_pesquisa" onkeyup="pesquisa_produto()" type="text" />
+            <button class="home__search__button"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+        <a id="cadastrar" class="botaoCadastro" href="{% url 'cadastro' %}"><button class="botaoEntrada">+</button></a>
+      </div>
+      <div class="lista">
+        {% for produto in produtos %}
+          {% if produto.data_saida == null %}
+            <div onclick="AbrirModal(
+                                  '{{ produto.id }}',
+                                  '{{ produto.nome }}', 
+                                  '{{ produto.preco }}', 
+                                  '{{ produto.descricao }}', 
+                                  '{{ produto.marca }}',
+                                  '{{ produto.quantidade }}', 
+                                  '{{ produto.imagem }}')" class="BotaoModal">
+              <div class="produto">
+                <img src="../{{ produto.imagem }}" />
+                <h3>{{ produto.nome }}</h3>
+              </div>
 
-        <footer class="rodape"></footer>
-        <script src="..{% static 'gerencia/js/main.js' %}"></script>
-    </body>
+              {% comment %}select * from gerencia_produtos WHERE data_saida is null{% endcomment %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <!-- Modal do Produto -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="document.getElementById('modal').style.display = 'none'">&times;</span>
+          <div class="modal_container">
+            <div class="modal_imagem">
+              <img id="imagem" src="" alt="" />
+            </div>
+            <div class="modal_info">
+              <h2 id="nome" class="model_container_text"></h2>
+              <p id="marca" class="model_container_descricao"></p>
+              <p id="descricao" class="model_container_descricao"></p>
+              <p id="quantidade" class="model_container_descricao"></p>
+              <p id="preco" class="model_container_descricao"></p>
+            </div>
+            <div id="addret">
+              <form method="POST" id="atualizar_qtd">
+                {% csrf_token %}
+                <input id="add_input" class="addret_inputs" name="add_value" type="number" />
+                <button id="add_button" class="addret_buttons" onclick="AtualizarQuantidade(1)">+</button>
+                <input id="ret_input" class="addret_inputs" name="ret_value" type="number" />
+                <button id="ret_button" class="addret_buttons" onclick="AtualizarQuantidade(2)">-</button>
+              </form>
+            </div>
+            <br />
+            <div class="modal_botoes" method="POST">
+              <button onclick="EditarProduto()" class="botaoEditar">Editar</button>
+              <a href="" class="botaoExcluir" id="btnExcluir">Excluir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal editar -->
+      <div id="modal_funcao" class="modalFuncao">
+        <div class="modal_funcao_content">
+          <span class="close" onclick="document.getElementById('modal_funcao').style.display = 'none'">&times;</span>
+          <div class="formularioEdicao">
+            <form method="POST" id="formulario">
+              {% csrf_token %}
+              <h2>Editar</h2>
+              <p class="model_container_text">Nome:</p>
+              <input type="text" id="nomeEditar" name="nome"/>
+              <p>Preço:</p>
+              <input type="text" id="precoEditar" name="preco" />
+              <p>Descrição:</p>
+              <input type="text" id="descricaoEditar" name="descricao" />
+              <p>Marca:</p>
+              <input type="text" id="marcaEditar" name="marca" />
+              <p>Quantidade:</p>
+              <input type="text" id="quantidadeEditar" name="quantidade" readonly/>
+              <div class="modal_botoes_editar">
+                <button class="botaoConfirmar" type="submit">Confirmar</button>
+                <button class="botaoCancelar" onclick="cancelar()" type="button">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="rodape"></footer>
+    <script src="..{% static 'gerencia/js/main.js' %}"></script>
+  </body>
 </html>
 
 <script>
@@ -144,6 +133,21 @@
         document.getElementById('marca').innerText = 'Marca: ' + Modal.marca
         
         document.getElementById('btnExcluir').href = '{% url 'deletar' 0 %}'.replace('0', Modal.id)
+        document.getElementById('add_link').href = '{% url 'adicionar' 0 %}'.replace('0', Modal.id)
+        document.getElementById('ret_link').href = '{% url 'retirar' 0 %}'.replace('0', Modal.id)
+
+        document.getElementById('add_button').onclick = function(){
+            var quantidade = document.getElementById('add_input').value
+            quantidade = parseInt(quantidade) + parseInt(Modal.quantidade)
+            document.getElementById('quantidade').innerText = 'Quantidade: ' + quantidade
+        }
+
+        document.getElementById('ret_button').onclick = function(){
+            var quantidade = document.getElementById('ret_input').value
+            quantidade = parseInt(Modal.quantidade) - parseInt(quantidade)
+            document.getElementById('quantidade').innerText = 'Quantidade: ' + quantidade
+        }
+
     }
 
     function EditarProduto(){
@@ -159,6 +163,25 @@
 
         document.getElementById('formulario').action = '{% url 'editar' 0 %}'.replace('0', Modal.id)
     }
+
+    function AtualizarQuantidade(tipo){
+        if(tipo == 1){
+            var quantidade = document.getElementById('add_input').value
+            quantidade = parseInt(quantidade) + parseInt(Modal.quantidade)
+            document.getElementById('quantidade').innerText = 'Quantidade: ' + quantidade
+
+            document.getElementById('atualizar_qtd').action = '{% url 'adicionar' 0 %}'.replace('0', Modal.id)
+        }
+        else if(tipo == 2){
+            var quantidade = document.getElementById('ret_input').value
+            quantidade = parseInt(Modal.quantidade) - parseInt(quantidade)
+            document.getElementById('quantidade').innerText = 'Quantidade: ' + quantidade
+
+            document.getElementById('atualizar_qtd').action = '{% url 'retirar' 0 %}'.replace('0', Modal.id)
+        }
+
+    }
+
 
     function cancelar(){
         document.getElementById('modal_funcao').style.display = 'none'
