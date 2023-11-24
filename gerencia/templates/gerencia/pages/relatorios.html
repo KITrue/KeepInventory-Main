@@ -12,5 +12,13 @@
     </head>
     <body>
         {% include 'gerencia/partials/header.html' %}
+
+        <ul>
+            {% for registro in registros %}
+                <li>{{ registro }}</li>
+            {% endfor %}
+        </ul>
+
+        {% include 'gerencia/partials/footer.html' %}
     </body>
 </html>

@@ -401,3 +401,13 @@ fieldset {
 .botaoCancelar:hover {
     background: rgb(168, 0, 0);
 }
+
+.addret_inputs {
+    width: 4em;
+    height: 1.7em;
+}
+
+.addret_buttons {
+    width: 2em;
+    height: 1.7em;
+}
