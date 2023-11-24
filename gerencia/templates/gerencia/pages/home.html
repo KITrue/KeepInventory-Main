@@ -18,6 +18,9 @@
 
             {% include 'gerencia/partials/graph.html' %}
 
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
 
             
         </main>
@@ -50,6 +53,18 @@
         <!-- summernote -->
         <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css'%}">
 
+        <!-- Código Chards.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+        <script>
+            window.onload = function(event){
+                renderiza_graph_produtos()
+            }
+        </script>
+
+
+        
         <!-- Scripts Admin LTE -->
 
         <!-- jQuery -->
