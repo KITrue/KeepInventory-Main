@@ -7,7 +7,7 @@
         
 
         <div style="width: 75%;">
-            <canvas id="graph_produtos"></canvas>
+            <canvas id="myChart"></canvas>
         </div>
 
         <!-- Right navbar links -->
@@ -91,14 +91,36 @@
     <!-- Código Chards.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="{% static 'gerencia/js/main.js' %}"></script>
-    
+
+        <script>
+            function renderiza_graph_produtos(){    
+                var labels = "{{ labels|safe }}";
+                var dados = "{{ dados|safe }}";
+
+                // Crie o gráfico com Chart.js
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',  // Ou outro tipo de gráfico
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Quantidade de Produtos',
+                            data: dados,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                });
+                
+                
+            };    
+        </script>
         <script>
             window.onload = function(event){
             renderiza_graph_produtos()
             }
         </script>
 
-        <script src="{% static 'chartkick/Chart.bundle.js' %}"></script>
-        <script src="{% static 'chartkick/chartkick.js' %}"></script>
-
+        
 </div>

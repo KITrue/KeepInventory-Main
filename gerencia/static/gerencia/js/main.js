@@ -32,21 +32,13 @@ function gera_cor(qtd=1){
 //função para chards.js
 
 
-function renderiza_graph_produtos(){
-  const ctx = document.getElementById('graph_produtos').getContext('2d');
-  var cores_geradas = gera_cor(qtd=12)
-  const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-      datasets: [{
-        label: 'Produtos',
-        data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
-        backgroundColor: "#CB1EA8",
-        borderColor: "#FFFFFF",
-        borderWidth: 0.2
-      }]
-    },
 
-  });
-}
+
+// function renderiza_graph_produtos(){
+//   const ctx = document.getElementById('graph_produtos').getContext('2d');
+//   var cores_geradas = gera_cor(qtd=12)
+//   const myChart = new Chart(ctx, {
+//     type: 'line',
+
+//   });
+// }

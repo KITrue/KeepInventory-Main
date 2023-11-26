@@ -5,7 +5,7 @@ from .api.serializers import ProdutosSerializer
 from django.http import HttpResponseBadRequest
 from datetime import datetime
 from django.views.generic import ListView
-from chartkick.django import PieChart
+from django.http import JsonResponse
 
 
 # from django.http import HttpResponse
@@ -164,20 +164,26 @@ class LogEstoqueView(ListView):
 # ----------------------------------- Logica grafico ----------------------------------- #
 
 def get_product_data(request):
-    labels = []
-    data = []
 
-    queryset = Produtos.objects.order_by('-data_entrada')[:5]
-    for produto in queryset:
-        labels.append(produto.nome)
-        data.append(produto.quantidade)
+    queryset = Produtos.objects.all('data_entrada', 'quantidade')
 
-    return JsonResponse({'labels': labels, 'data': data})
+    labels = [Produtos.data_entrada for Produtos in queryset]
+    dados = [Produtos.quantidade for Produtos in queryset]
+    #return JsonResponse({'labels': labels, 'data': data})
+
+    context = {
+        'labels': labels,
+        'dados': dados,
+    }
+    return render(request, 'gerencia/templates/partials/graph.html', context)
+
+def chart_view(request):
+    return render(request, 'chartapp/chart.html')
 
 
 def funciona_chart(request):
-    labels = []
-    data = []
+    labels = [produto.data_entrada for produto in Produtos.objects.all()]
+    data = [produto.quantidade for produto in Produtos.objects.all()]
 
     queryset = Produtos.objects.order_by('-population')[:5]
     for Produtos in queryset:
