@@ -28,7 +28,10 @@ function gera_cor(qtd=1){
     
 }
 
+
 //função para chards.js
+
+
 function renderiza_graph_produtos(){
   const ctx = document.getElementById('graph_produtos').getContext('2d');
   var cores_geradas = gera_cor(qtd=12)
@@ -47,4 +50,3 @@ function renderiza_graph_produtos(){
 
   });
 }
-console.log("deu certo")
