@@ -32,9 +32,8 @@ function gera_cor(qtd=1){
 //função para chards.js
 
 function renderiza_graph_produtos(){    
-    var labels = {{ labels|safe }};
-    var dados = {{ dados|safe }};
-
+    var labels = JSON.parse(document.getElementById('labels').textContent);
+    var dados = JSON.parse(document.getElementById('dados').textContent);
     // Crie o gráfico com Chart.js
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
