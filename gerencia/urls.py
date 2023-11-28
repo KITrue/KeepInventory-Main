@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.conf.urls.static import static  # imagem
 from django.conf import settings                                                                 
-from gerencia.views import home, entradas, relatorios, cadastro, editar, deletar, lte, adicionar, retirar, LogEstoqueView
+from gerencia.views import home, entradas, relatorios, cadastro, editar, deletar, lte, adicionar, retirar, export_excl
 
 urlpatterns = [
     path('', home, name='home'),  # Home
@@ -12,6 +12,6 @@ urlpatterns = [
     path('deletar/<int:id>', deletar, name='deletar'),
     path('adicionar/<int:id>', adicionar, name='adicionar'),
     path('retirar/<int:id>', retirar, name='retirar'),
-    path('log-estoque/', LogEstoqueView.as_view(), name='log_estoque'),
+    path('export_excl/', export_excl, name='export_excl'),
     path('lte/', lte, name='lte'),
 ]

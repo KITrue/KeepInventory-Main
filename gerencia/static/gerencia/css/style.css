@@ -6,6 +6,7 @@
     --cor-cabecalho: #181d31;
     --cor-destaque: #54d64c;
     --letra-titulo: 'VT323', monospace;
+    --letra-log: 'Kanit', sans-serif;
 }
 
 * {
@@ -411,3 +412,26 @@ fieldset {
     width: 2em;
     height: 1.7em;
 }
+
+.reg_container {
+    text-align: center;
+    margin-top: 1em;
+    /* margin: 0 auto; */
+}
+
+.reg_list {
+    margin: auto 10px
+}
+
+.reg_items {
+    background-color: gray;
+    border-radius: 10px;
+    border: 1px solid #919191; 
+    padding: 12px; 
+    margin: 0.5em 0; 
+    display: list-item;
+    color: white;
+    font-family: var(--letra-log);
+    font-size: 17px;
+}
+

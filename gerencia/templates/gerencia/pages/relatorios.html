@@ -12,13 +12,21 @@
     </head>
     <body>
         {% include 'gerencia/partials/header.html' %}
-
-        <ul>
-            {% for registro in registros %}
-                <li>{{ registro }}</li>
-            {% endfor %}
-        </ul>
-
+        <form action="{% url 'export_excl' %}" method="get">
+            <button type="submit">Exportar para Excel</button>
+        </form>
+        <div class="reg_container">
+            <ul class="reg_list">
+                {% for registro in registros %}
+                    <li class="reg_items">
+                        Produto: {{ registro.produto.nome }} / 
+                        Quantidade: {{ registro.quantidade }} / 
+                        Tipo: {{ registro.tipo }} / 
+                        Data Movimentação: {{ registro.data_movimentacao }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
         {% include 'gerencia/partials/footer.html' %}
     </body>
 </html>

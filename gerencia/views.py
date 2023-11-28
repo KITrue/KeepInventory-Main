@@ -1,9 +1,11 @@
+import csv
 from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework import viewsets
 from .models import Produtos, LogEstoque
 from .api.serializers import ProdutosSerializer
-from django.http import HttpResponseBadRequest
-from datetime import datetime
+from django.http import HttpResponseBadRequest, HttpResponse
+from datetime import datetime, timedelta
+from django.utils import timezone
 from django.views.generic import ListView
 from django.http import JsonResponse
 
@@ -32,8 +34,11 @@ def entradas(request):
 
 
 def relatorios(request):
-    return render(request, 'gerencia/pages/relatorios.html')
+    ultimo_mes = timezone.now() - timedelta(days=30)
+    registros = LogEstoque.objects.filter(data_movimentacao__gte=ultimo_mes).order_by('-data_movimentacao')
+    return render(request, 'gerencia/pages/relatorios.html', {'registros': registros})
 
+    
 
 # ----------------------------------- API - Cadastrar ----------------------------------- #
 
@@ -154,16 +159,26 @@ def retirar(request, id):
 
     return redirect('entradas')
     
+# ----------------------------------- API - Exportação do Excel - LOG ----------------------------------- #
 
-# ----------------------------------- API - ListView Log ----------------------------------- #
 
+def export_excl(request):
+    ultimo_mes = timezone.now() - timedelta(days=30)
+    registros = LogEstoque.objects.filter(data_movimentacao__gte=ultimo_mes).order_by('-data_movimentacao')
 
-class LogEstoqueView(ListView):
-    model = LogEstoque
-    template_name = "relatorios.html"
-    obg_name = 'registros'
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="registros.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Produto', 'Quantidade', 'Tipo', 'Data de Movimentação'])
+
+    for registro in registros:
+        writer.writerow([registro.produto, registro.quantidade, registro.tipo, registro.data_movimentacao])
+
+        return response
 
 # ----------------------------------- Logica grafico ----------------------------------- #
+
 
 def get_product_data(request):
 
@@ -178,6 +193,7 @@ def get_product_data(request):
         'dados': dados,
     }
     return render(request, 'gerencia/templates/partials/graph.html', context)
+
 
 def chart_view(request):
     return render(request, 'chartapp/chart.html')

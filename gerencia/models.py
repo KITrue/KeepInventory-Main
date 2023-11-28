@@ -35,6 +35,9 @@ class LogEstoque(models.Model):
     produto = models.ForeignKey(
         Produtos, on_delete=models.CASCADE
     )
+    nome = models.CharField(
+        max_length=65, null=True, blank=True
+    )
     quantidade = models.PositiveIntegerField(
         blank=True,
         null=True
