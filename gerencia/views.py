@@ -158,3 +158,37 @@ class LogEstoqueView(ListView):
     model = LogEstoque
     template_name = "relatorios.html"
     obg_name = 'registros'
+
+# ----------------------------------- Logica grafico ----------------------------------- #
+
+def get_product_data(request):
+
+    queryset = Produtos.objects.all()
+
+    labels = [Produtos.data_entrada for Produtos in queryset]
+    dados = [Produtos.quantidade for Produtos in queryset]
+    #return JsonResponse({'labels': labels, 'data': data})
+
+    context = {
+        'labels': labels,
+        'dados': dados,
+    }
+    return render (request, 'templates/gerencia/partials/graph.html', {'labels': labels, 'dados': dados})
+
+def chart_view(request):
+    return render(request, 'chartapp/chart.html')
+
+
+# def funciona_chart(request):
+#     labels = [produto.data_entrada for produto in Produtos.objects.all()]
+#     data = [produto.quantidade for produto in Produtos.objects.all()]
+
+#     queryset = Produtos.objects.order_by('-population')[:5]
+#     for Produtos in queryset:
+#         labels.append(Produtos.nome)
+#         data.append(Produtos.data_entrada)
+
+#     return render(request, 'graph.html', {
+#         'labels': labels,
+#         'data': data,
+#     })
