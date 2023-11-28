@@ -22,11 +22,6 @@ class ProdutosViewSet(viewsets.ModelViewSet):
 def home(request):
     produtos = Produtos.objects.all()
     return render(request, 'gerencia/pages/home.html', {'produtos': produtos})
-    
-    
-
-def lte(request):
-    return render(request, 'adminlte/index.html')
 
 
 def entradas(request):
