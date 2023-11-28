@@ -45,11 +45,11 @@ function renderiza_graph_produtos(){
     // Crie o gráfico com Chart.js
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar',  // Ou outro tipo de gráfico
+        type: 'line',  // Ou outro tipo de gráfico
         data: {
             labels: labels,
             datasets: [{
-                label: 'Quantidade de Produtos',
+                label: 'data de entrada',
                 data: dados,
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',

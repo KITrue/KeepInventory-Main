@@ -6,8 +6,9 @@ from .api.serializers import ProdutosSerializer
 from django.http import HttpResponseBadRequest, HttpResponse
 from datetime import datetime, timedelta
 from django.utils import timezone
-from django.views.generic import ListView
+from django.views.generic import TemplateView
 from django.http import JsonResponse
+
 
 
 # from django.http import HttpResponse
@@ -182,7 +183,7 @@ def export_excl(request):
 
 def get_product_data(request):
 
-    queryset = Produtos.objects.all()
+    queryset = Produtos.objects.values('data_entrada', 'quantidade').order_by('-data_entrada')
 
     labels = [Produtos.data_entrada for Produtos in queryset]
     dados = [Produtos.quantidade for Produtos in queryset]
@@ -192,8 +193,8 @@ def get_product_data(request):
         'labels': labels,
         'dados': dados,
     }
-    return render (request, 'templates/gerencia/partials/graph.html', {'labels': labels, 'dados': dados})
-
+    return render (request, 'gerencia/partials/graph.html', {'labels': labels, 'dados': dados})
+    
 def chart_view(request):
     return render(request, 'chartapp/chart.html')
 
