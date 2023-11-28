@@ -1,32 +1,29 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>KITrue | Reports</title>
-        {% include 'gerencia/partials/imports.html' %}
-        <link rel="shortcut icon" type="image/ico" href="{% static 'gerencia/images/favicon.ico' %}" >
-        <link rel="stylesheet" href="{% static 'gerencia/css/style.css' %}" />
-    </head>
-    <body>
-        {% include 'gerencia/partials/header.html' %}
-        <form action="{% url 'export_excl' %}" method="get">
-            <button type="submit">Exportar para Excel</button>
-        </form>
-        <div class="reg_container">
-            <ul class="reg_list">
-                {% for registro in registros %}
-                    <li class="reg_items">
-                        Produto: {{ registro.produto.nome }} / 
-                        Quantidade: {{ registro.quantidade }} / 
-                        Tipo: {{ registro.tipo }} / 
-                        Data Movimentação: {{ registro.data_movimentacao }}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% include 'gerencia/partials/footer.html' %}
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KITrue | Reports</title>
+    {% include 'gerencia/partials/imports.html' %}
+    <link rel="shortcut icon" type="image/ico" href="{% static 'gerencia/images/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'gerencia/css/style.css' %}" />
+  </head>
+  <body>
+    {% include 'gerencia/partials/header.html' %}
+    <form action="{% url 'export_excl' %}" method="get" class="btn_form">
+      <div class="btn_container">
+        <a class="excl" href="{% url 'export_excl' %}">Baixar Relatório</a>
+      </div>
+    </form>
+    <div class="reg_container">
+      <ul class="reg_list">
+        {% for registro in registros %}
+          <li class="reg_items">Produto: {{ registro.produto.nome }} / Quantidade: {{ registro.quantidade }} / Tipo: {{ registro.tipo }} / Data Movimentação: {{ registro.data_movimentacao }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% include 'gerencia/partials/footer.html' %}
+  </body>
 </html>

@@ -409,18 +409,28 @@ fieldset {
 }
 
 .addret_buttons {
+    text-align: right;
     width: 2em;
     height: 1.7em;
 }
 
+.btn_form {
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+
+.btn_container {
+    text-align: right;
+    padding-right: 0.5em;
+}
+
 .reg_container {
     text-align: center;
-    margin-top: 1em;
     /* margin: 0 auto; */
 }
 
 .reg_list {
-    margin: auto 10px
+    margin: 0px 10px
 }
 
 .reg_items {
@@ -435,3 +445,34 @@ fieldset {
     font-size: 17px;
 }
 
+/* ---------------- Botão Excel------------------- */
+
+
+  .excl{
+    line-height: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #333;
+    text-align: center;
+    padding: 8px;
+    color: #fff;
+    border-radius: 0.3em;
+    letter-spacing: 1px;
+    border: 5px solid #333;
+    transition: all .35s;
+    font-family: var(--letra-log);
+  }
+  
+  
+  .excl:hover{
+    width: 200px;
+    padding: 8px;
+    border-radius: 0.3em;
+    background-color: transparent;
+    border: 5px solid #2ecc71;
+    color: #2ecc71;
+  }
+
+
+
+/* ---------------------------------------------- */
