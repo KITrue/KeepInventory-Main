@@ -32,8 +32,16 @@ function gera_cor(qtd=1){
 //função para chards.js
 
 function renderiza_graph_produtos(){    
-    var labels = JSON.parse(document.getElementById('labels').textContent);
-    var dados = JSON.parse(document.getElementById('dados').textContent);
+    var labels = document.getElementById('labels').textContent;
+    var dados = document.getElementById('dados').textContent;
+
+    if (!labels || !dados) {
+        console.log("Os dados estão vazios!");
+    }else {
+        var labels = JSON.parse(labels);
+        var dados = JSON.parse(dados);
+        // ...
+    }
     // Crie o gráfico com Chart.js
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
@@ -49,8 +57,6 @@ function renderiza_graph_produtos(){
             }]
         },
     });
-    
-    
 };    
 
 // function renderiza_graph_produtos(){
