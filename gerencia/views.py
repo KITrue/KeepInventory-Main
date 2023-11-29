@@ -37,6 +37,10 @@ def relatorios(request):
     registros = LogEstoque.objects.filter(data_movimentacao__gte=ultimo_mes).order_by('-data_movimentacao')
     return render(request, 'gerencia/pages/relatorios.html', {'registros': registros})
 
+def test(request):
+    produtos = Produtos.objects.all()
+    return render(request, 'gerencia/pages/test.html', {'produtos': produtos})
+
     
 
 # ----------------------------------- API - Cadastrar ----------------------------------- #
@@ -174,7 +178,7 @@ def export_excl(request):
     for registro in registros:
         writer.writerow([registro.produto, registro.quantidade, registro.tipo, registro.data_movimentacao])
 
-        return response
+    return response
 
 # ----------------------------------- Logica grafico ----------------------------------- #
 
