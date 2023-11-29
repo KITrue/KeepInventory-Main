@@ -6,8 +6,11 @@ from .api.serializers import ProdutosSerializer
 from django.http import HttpResponseBadRequest, HttpResponse
 from datetime import datetime, timedelta
 from django.utils import timezone
-from django.views.generic import TemplateView
 from django.http import JsonResponse
+from django.core import serializers
+from django.views.generic import TemplateView
+from chartjs.views.lines import BaseLineChartView
+from random import randint
 
 
 
@@ -175,6 +178,28 @@ def export_excl(request):
 
 # ----------------------------------- Logica grafico ----------------------------------- #
 
+class LineChartJSONView(BaseLineChartView):
+    def get_labels(self):
+        """Return 7 labels."""
+        return ["January", "February", "March", "April", "May", "June", "July"]
+
+    def get_data(self):
+        """Return 3 dataset to plot."""
+
+        return [[75, 44, 92, 11, 44, 95, 35],
+                [41, 92, 18, 3, 73, 87, 92],
+                [87, 21, 94, 3, 90, 13, 65]]
+
+
+line_chart = TemplateView.as_view(template_name='line_chart.html')
+line_chart_json = LineChartJSONView.as_view()
+
+def my_view(request):
+    data = {
+        'message': 'Hello, world!'
+    }
+    return JsonResponse(data)
+
 
 def get_product_data(request):
 
@@ -182,7 +207,7 @@ def get_product_data(request):
 
     labels = [Produtos.data_entrada for Produtos in queryset]
     dados = [Produtos.quantidade for Produtos in queryset]
-    #return JsonResponse({'labels': labels, 'data': data})
+    return JsonResponse({'labels': labels, 'data': dados})
 
     context = {
         'labels': labels,

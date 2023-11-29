@@ -31,6 +31,15 @@ function gera_cor(qtd=1){
 
 //função para chards.js
 
+$.ajax({
+    url: '/get_product_data/',
+    type: 'GET',
+    success: function(data) {
+        alert(data.message);
+    }
+});
+
+
 function renderiza_graph_produtos(){    
     var labels = document.getElementById('labels').textContent;
     var dados = document.getElementById('dados').textContent;
@@ -58,6 +67,9 @@ function renderiza_graph_produtos(){
         },
     });
 };    
+
+
+
 
 // function renderiza_graph_produtos(){
 //   const ctx = document.getElementById('graph_produtos').getContext('2d');

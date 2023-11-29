@@ -3,8 +3,20 @@
 <!-- solid sales graph -->
 
     <!-- Código Chards.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
     <script src="{% static 'gerencia/js/main.js' %}"></script>
+    <script type="text/javascript">
+        $.get('{% url "get_product_data" %}', function(renderiza_graph_produtos) {
+            var ctx = $("#myChart").get(0).getContext("2d");
+            new Chart(ctx).Line(data);
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         window.onload = function(event){
         renderiza_graph_produtos()
