@@ -3,47 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Projeto Django</title>
-    <!-- Inclua o Chart.js usando um CDN -->
+    <title>Gráfico de Bolhas de Produtos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <canvas id="myChart" width="400" height="200"></canvas>
+    <div style="width: 80%; margin: auto;">
+        <canvas id="myBubbleChart" width="400" height="200"></canvas>
+    </div>
 
-   <script>
-       document.addEventListener('DOMContentLoaded', function () {
-           fetch('/chart_data/')
-               .then(response => response.json())
-               .then(data => {
-                   var ctx = document.getElementById('myChart').getContext('2d');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/chart_data/')
+                .then(response => response.json())
+                .then(data => {
+                    var ctx = document.getElementById('myBubbleChart').getContext('2d');
 
-                   var myChart = new Chart(ctx, {
-                       type: 'bubble',
-                       data: {
-                           datasets: data.datasets,
-                       },
-                       options: {
-                           scales: {
-                               x: {
-                                   type: 'time',
-                                   time: {
-                                       unit: 'day',
-                                       displayFormats: {
-                                           day: 'YYYYMMDD'
-                                       }
-                                   }
-                               },
-                               y: {
-                                   title: {
-                                       display: true,
-                                       text: 'Quantidade'
-                                   }
-                               }
-                           }
-                       }
-                   });
-               });
-       });
-   </script>
+                    var myBubbleChart = new Chart(ctx, {
+                        type: 'bubble',
+                        data: {
+                            datasets: data.datasets,
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                },
+                                y: {
+                                    type: 'linear',
+                                    position: 'left',
+                                },
+                            },
+                        },
+                    });
+                });
+        });
+    </script>
 </body>
 </html>

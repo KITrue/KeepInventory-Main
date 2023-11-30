@@ -15,56 +15,36 @@
     <body>
         {% include 'gerencia/partials/header.html' %}
 
-        <div class="containergraph">
-            <div class="divgraph">
-                <canvas id="myChart" width="300" height="200"></canvas>
-            </div>
-            <div class="divlista"> 
-                
-            </div> 
+        <div style="width: 80%; margin: auto;">
+            <canvas id="myBubbleChart" width="400" height="200"></canvas>
         </div>
     
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 fetch('/chart_data/')
-                .then(response => response.json())
-                .then(data => {
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                    
-                    var myChart = new Chart(ctx, {
-                        type: 'bubble', // Alterando para gráfico de bolhas
-                        data: {
-                            labels: data.labels,
-                            datasets: [{
-                                label: 'Quantidade de Produtos',
-                                data: data.data.map(value => ({
-                                    x: value.x, // Valor do eixo x
-                                    y: value.y, // Valor do eixo y
-                                    r: value.bubbleSize // Tamanho da bolha
-                                })),
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                                y: {
-                                    maintainAspectRatio: true,
-                                    type: 'linear',
-                                    position: 'left'
+                    .then(response => response.json())
+                    .then(data => {
+                        var ctx = document.getElementById('myBubbleChart').getContext('2d');
+    
+                        var myBubbleChart = new Chart(ctx, {
+                            type: 'bubble',
+                            data: {
+                                datasets: data.datasets,
+                            },
+                            options: {
+                                scales: {
+                                    x: {
+                                        type: 'linear',
+                                        position: 'bottom',
+                                    },
+                                    y: {
+                                        type: 'linear',
+                                        position: 'left',
+                                    },
                                 },
-                                x: {
-                                    maintainAspectRatio: false,
-                                    type: 'linear',
-                                    position: 'bottom'
-                                }
-                            }
-                        }
-                    }); // var myChart
-                    
-                }); // data
+                            },
+                        });
+                    });
             });
         </script>
 

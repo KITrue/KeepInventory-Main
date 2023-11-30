@@ -1,21 +1,29 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Produtos, LogEstoque
-
+from .models import Produtos
 
 def chart_data(request):
     produtos = Produtos.objects.all()
     
-    labels = [produto.data_entrada.strftime('%Y%m%d') for produto in produtos] # x
-    print(labels)
-    data = [produto.quantidade for produto in produtos] # y
-    
-    # Use um atributo específico do seu modelo para calcular o tamanho da bolha
-    bubble_size = [produto.quantidade for produto in produtos]
+    datasets = []
+
+    for produto in produtos:
+        dataset = {
+            'label': produto.nome,
+            'data': [{
+                'x': produto.data_entrada.strftime('%Y%m%d'),  # Posição X baseada na data
+                'y': produto.quantidade,  # Posição Y baseada na quantidade
+                'r': produto.quantidade  # Tamanho da bolha baseado no preço
+            }],
+            'backgroundColor': 'rgba(75, 192, 192, 0.2)',
+            'borderColor': 'rgba(75, 192, 192, 1)',
+            'borderWidth': 1,
+        }
+
+        datasets.append(dataset)
 
     chart_data = {
-        'labels': labels,
-        'data': [{'x': x, 'y': y, 'bubbleSize': size} for x, y, size in zip(labels, data, bubble_size)],
+        'datasets': datasets,
     }
 
     return JsonResponse(chart_data)
