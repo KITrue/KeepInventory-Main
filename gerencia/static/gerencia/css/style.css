@@ -474,9 +474,15 @@ fieldset {
   }
 
 
-
 /* ---------------------------------------------- */
 
-.graphbd {
-    color: white;
+.divlista {
+    padding: 100px;
+    background-color: #000000;
+    display: block;
+}
+
+.containergraph {
+    display: flexbox;
+    justify-content: space-between;
 }

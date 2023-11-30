@@ -9,17 +9,67 @@
         <title>KITrue | Home</title>
         {% include 'gerencia/partials/imports.html' %}
         <link rel="shortcut icon" type="image/ico" href="{% static 'gerencia/images/favicon.ico' %}" >
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link rel="stylesheet" href="{% static 'gerencia/css/style.css' %}" />
     </head>
     <body>
         {% include 'gerencia/partials/header.html' %}
 
-        <main class="home">
+        <div class="containergraph">
+            <div class="divgraph">
+                <canvas id="myChart" width="300" height="200"></canvas>
+            </div>
+            <div class="divlista"> 
+                
+            </div> 
+        </div>
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('/chart_data/')
+                .then(response => response.json())
+                .then(data => {
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    
+                    var myChart = new Chart(ctx, {
+                        type: 'bubble', // Alterando para gráfico de bolhas
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                label: 'Quantidade de Produtos',
+                                data: data.data.map(value => ({
+                                    x: value.x, // Valor do eixo x
+                                    y: value.y, // Valor do eixo y
+                                    r: value.bubbleSize // Tamanho da bolha
+                                })),
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    maintainAspectRatio: true,
+                                    type: 'linear',
+                                    position: 'left'
+                                },
+                                x: {
+                                    maintainAspectRatio: false,
+                                    type: 'linear',
+                                    position: 'bottom'
+                                }
+                            }
+                        }
+                    }); // var myChart
+                    
+                }); // data
+            });
+        </script>
 
-            {% include 'gerencia/partials/graph.html' %}
 
-            
-        </main>
+
 
         {% include 'gerencia/partials/footer.html' %}
 

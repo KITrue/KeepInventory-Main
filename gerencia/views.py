@@ -139,6 +139,7 @@ def adicionar(request, id):
 
     return redirect('entradas')
         
+        
 def retirar(request, id):
     produto = get_object_or_404(Produtos, id=id)
     logproduto = LogEstoque(produto_id=id)
@@ -219,6 +220,7 @@ def get_product_data(request):
     }
     return render (request, 'gerencia/partials/graph.html', {'labels': labels, 'dados': dados})
     
+
 def chart_view(request):
     return render(request, 'chartapp/chart.html')
 

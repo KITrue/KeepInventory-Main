@@ -35,9 +35,6 @@ class LogEstoque(models.Model):
     produto = models.ForeignKey(
         Produtos, on_delete=models.CASCADE
     )
-    nome = models.CharField(
-        max_length=65, null=True, blank=True
-    )
     quantidade = models.PositiveIntegerField(
         blank=True,
         null=True
@@ -53,6 +50,21 @@ class LogEstoque(models.Model):
         auto_now_add=True
     )
 
+
+class Movimentacoes(models.Model):
+    produto = models.ForeignKey(
+        Produtos, on_delete=models.CASCADE
+    )
+    nome = models.CharField(
+        max_length=65, null=True, blank=True
+    )
+    quantidade = models.PositiveIntegerField(
+        blank=True,
+        null=True
+    )
+    data_movimentacao = models.DateTimeField(
+        null=True, blank=True
+    )
 
 class Fornecedores(models.Model):
     id = models.BigAutoField(
