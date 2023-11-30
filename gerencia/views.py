@@ -174,10 +174,10 @@ def export_excl(request):
     response['Content-Disposition'] = 'attachment; filename="registros.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Produto', 'Quantidade', 'Tipo', 'Data de Movimentação'])
+    writer.writerow(['Id_Produto', 'Produto', 'Quantidade', 'Tipo', 'Data de Movimentação'])
 
     for registro in registros:
-        writer.writerow([registro.produto, registro.quantidade, registro.tipo, registro.data_movimentacao])
+        writer.writerow([registro.produto, registro.produto.nome, registro.quantidade, registro.tipo, registro.data_movimentacao])
 
     return response
 
