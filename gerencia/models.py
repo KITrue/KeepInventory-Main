@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Produtos(models.Model):
     id = models.AutoField(
         primary_key=True
@@ -51,20 +50,6 @@ class LogEstoque(models.Model):
     )
 
 
-class Movimentacoes(models.Model):
-    produto = models.ForeignKey(
-        Produtos, on_delete=models.CASCADE
-    )
-    nome = models.CharField(
-        max_length=65, null=True, blank=True
-    )
-    quantidade = models.PositiveIntegerField(
-        blank=True,
-        null=True
-    )
-    data_movimentacao = models.DateTimeField(
-        null=True, blank=True
-    )
 
 class Fornecedores(models.Model):
     id = models.BigAutoField(

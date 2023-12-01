@@ -75,10 +75,10 @@ def pagina_sucesso(request):
 
 def deletar(request, id):
     delete_produtos = Produtos.objects.get(id=id)
-    # delete_produtos.delete()
-    delete_produtos.quantidade = 0
-    delete_produtos.data_saida = datetime.now()
-    delete_produtos.save()
+    delete_produtos.delete()
+    # delete_produtos.quantidade = 0
+    # delete_produtos.data_saida = datetime.now()
+    # delete_produtos.save()
     return redirect('entradas')
 
 
