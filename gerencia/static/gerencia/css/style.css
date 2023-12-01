@@ -247,8 +247,8 @@ fieldset {
 /* ---- Parte das imagens ---- */
 
 .imagens_entradas {
-    width: 50px;
-
+    width: 100%;
+    height: auto;
 }
 
 /* ---- Modal ---- */
@@ -271,10 +271,13 @@ fieldset {
     padding: 20px;
     border-radius: 5px;
     border: 1px solid #888;
-    width: 350px;
+    width: fit-content;
     height: fit-content;
 }
-
+.modal_imagem {
+    width: 100%;
+    height: auto;
+}
 .close{
     color: #aaa;
     float: right;
