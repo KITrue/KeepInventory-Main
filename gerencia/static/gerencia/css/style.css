@@ -476,13 +476,58 @@ fieldset {
 
 /* ---------------------------------------------- */
 
+
 .divlista {
-    padding: 100px;
-    background-color: #000000;
-    display: block;
+    padding: 30px;
+    background-color: #FFFFFF;
+    width: auto; /* Increase the width to 100% */
+    height: auto; /* Increase the height to 600px */
 }
 
+
 .containergraph {
-    display: flexbox;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 500px;
 }
+
+.graph {
+    flex: 1;
+    max-width: auto;
+    min-height: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 9px;
+}
+
+.lista_avisos {
+    flex: 1;
+    padding: 24px;
+    margin: 1rem;
+    margin-top: 10px;
+    max-width: 40%;
+    float: right;
+    background-color: #A6CF98;
+    border-radius: 3%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+}
+.lista_avisos li {
+    padding: 5px;
+    transition: background-color 0.3s;
+    list-style: none;
+    border-radius: 3px;
+}
+
+.lista_avisos li:hover {
+    background-color: #f5f5f5;
+}
+
+.lista_avisos h2 {
+    margin-top: 0;
+    font-family: var(--letra-log);
+    font-size: 20px;
+    color: #000000;
+}
+
+/* --------------------- avisos ------------------------- */

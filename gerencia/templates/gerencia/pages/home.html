@@ -14,16 +14,12 @@
     </head>
     <body>
         {% include 'gerencia/partials/header.html' %}
-
-        <div style="width: 80%; margin: auto;">
-            <canvas id="myBubbleChart" width="400" height="200"></canvas>
-        </div>
-    
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 fetch('/chart_data/')
                     .then(response => response.json())
                     .then(data => {
+                        
                         var ctx = document.getElementById('myBubbleChart').getContext('2d');
     
                         var myBubbleChart = new Chart(ctx, {
@@ -43,10 +39,32 @@
                                     },
                                 },
                             },
+                            
                         });
                     });
+                    
             });
         </script>
+
+        <div class="divlista">
+
+            <div class="lista_avisos">
+                <h2>Avisos de Previsão</h2>
+                <ul>
+                    {% for produto in produtos %}
+                        {% if produto.quantidade <= 10 %}
+                        <li>{{ produto.nome }} - Cuidado a Quantidade do protudo é de: {{ produto.quantidade }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    <!-- Adicione mais itens conforme necessário -->
+                </ul>
+            </div>
+            <div class="containergraph">
+                <canvas id="myBubbleChart" class="graph"></canvas>
+            </div>
+
+        </div>
+ 
 
 
 
