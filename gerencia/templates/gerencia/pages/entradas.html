@@ -60,7 +60,8 @@
               <p id="quantidade" class="model_container_descricao"></p>
               <p id="preco" class="model_container_descricao"></p>
             </div>
-            <div id="addret">
+            <div id="addret" class="modal_info">
+              <p id="infAddret" class="model_container_descricao"></p>
               <form method="POST" id="atualizar_qtd">
                 {% csrf_token %}
                 <input id="add_input" class="addret_inputs" name="add_value" type="number" />
@@ -131,6 +132,7 @@
         document.getElementById('preco').innerText = 'R$ ' + Modal.preco
         document.getElementById('quantidade').innerText = 'Quantidade: ' + Modal.quantidade
         document.getElementById('marca').innerText = 'Marca: ' + Modal.marca
+        document.getElementById('infAddret').innerText = 'Adicionar ou Retirar quantidade do produto: ' + Modal.nome
         
         document.getElementById('btnExcluir').href = '{% url 'deletar' 0 %}'.replace('0', Modal.id)
         document.getElementById('add_link').href = '{% url 'adicionar' 0 %}'.replace('0', Modal.id)
