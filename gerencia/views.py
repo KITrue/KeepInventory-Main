@@ -136,19 +136,14 @@ def adicionar(request, id):
     vquantidade = request.POST.get('add_value')
     vquantidade = int(vquantidade)
 
-    if vquantidade <= 0:
-        return HttpResponseBadRequest("A quantidade não pode ser negativa.")
-    else:
+    if not vquantidade <= 0 or vquantidade == "":
         regestoque.quantidadet = produto.quantidade + vquantidade
         produto.quantidade += vquantidade
-
-    logproduto.tipo = 'Entrada'
-    logproduto.quantidade = vquantidade
-    
-
-    produto.save()
-    logproduto.save()
-    regestoque.save()
+        logproduto.tipo = 'Entrada'
+        logproduto.quantidade = vquantidade
+        produto.save()
+        logproduto.save()
+        regestoque.save()
 
     return redirect('entradas')
         
@@ -161,21 +156,14 @@ def retirar(request, id):
     vquantidade = request.POST.get('ret_value')
     vquantidade = int(vquantidade)
 
-    if vquantidade < 0:
-        return HttpResponseBadRequest("A quantidade não pode ser negativa.")
-    elif vquantidade > produto.quantidade:
-        return HttpResponseBadRequest("A quantidade a ser retirada é maior do que a quantidade disponível.")
-    else:
+    if not vquantidade <= 0 or vquantidade == "":
         regestoque.quantidadet = produto.quantidade - vquantidade
         produto.quantidade -= vquantidade
-
-    logproduto.tipo = 'Saida'
-    logproduto.quantidade = vquantidade
-    
-
-    regestoque.save()
-    produto.save()
-    logproduto.save()
+        logproduto.tipo = 'Saida'
+        logproduto.quantidade = vquantidade
+        regestoque.save()
+        produto.save()
+        logproduto.save()
 
     return redirect('entradas')
     
