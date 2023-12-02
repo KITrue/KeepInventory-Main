@@ -10,14 +10,14 @@
     <div style="width: 80%; margin: auto;">
         <canvas id="myBubbleChart" width="400" height="200"></canvas>
     </div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             fetch('/chart_dataa/')
                 .then(response => response.json())
                 .then(data => {
                     var ctx = document.getElementById('myBubbleChart').getContext('2d');
-    
+
                     var myBubbleChart = new Chart(ctx, {
                         type: 'bubble',
                         data: {
@@ -34,12 +34,20 @@
                                     position: 'left',
                                 },
                             },
+                            plugins: {
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            return 'Quantidade: ' + context.parsed.y;
+                                        }
+                                    }
+                                }
+                            }
                         },
                     });
                 });
         });
     </script>
-    
-    
 </body>
+
 </html>

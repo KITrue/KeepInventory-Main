@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Produtos(models.Model):
     id = models.AutoField(
         primary_key=True
@@ -31,6 +32,9 @@ class Produtos(models.Model):
 
 
 class LogEstoque(models.Model):
+    id = models.AutoField(
+        primary_key=True
+    ) 
     produto = models.ForeignKey(
         Produtos, on_delete=models.CASCADE
     )
@@ -49,6 +53,17 @@ class LogEstoque(models.Model):
         auto_now_add=True
     )
 
+
+class SaldoEstoque(models.Model):
+    log = models.ForeignKey(
+        Produtos, on_delete=models.CASCADE
+    )
+    quantidadet = models.IntegerField(
+        default=0
+    )
+    data_mov = models.DateTimeField(
+        auto_now_add=True
+    )
 
 
 class Fornecedores(models.Model):

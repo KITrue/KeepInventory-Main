@@ -1,7 +1,7 @@
 import csv
 from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework import viewsets
-from .models import Produtos, LogEstoque
+from .models import Produtos, LogEstoque, SaldoEstoque
 from .api.serializers import ProdutosSerializer
 from django.http import HttpResponseBadRequest, HttpResponse
 from datetime import datetime, timedelta
@@ -50,16 +50,24 @@ def cadastro(request):
     if request.method == 'POST':
         # Criar um novo objeto Produto com os dados do formulário
         novo_produto = Produtos()
+        
         novo_produto.nome = request.POST.get('nome')
         novo_produto.marca = request.POST.get('marca')
         novo_produto.quantidade = request.POST.get('quantidade')
         novo_produto.descricao = request.POST.get('descricao')
         novo_produto.preco = request.POST.get('preco')
         novo_produto.imagem = request.FILES.get('imagem')
+
         novo_produto.save()
+
+        novo_reg = SaldoEstoque()
+        novo_reg.log = novo_produto  # Relacionar o registro ao produto recém-criado
+        novo_reg.quantidadet = novo_produto.quantidade  # Inicializ ar com a quantidade do produto
+        novo_reg.save()
 
         # Redirecionar para a página de sucesso ou qualquer outra página desejada
         return redirect('entradas')
+    
 
     # Se a requisição não for POST, apenas renderize o formulário
     return render(request, 'gerencia/pages/cadastro.html')
@@ -108,8 +116,9 @@ def editar(request, id):
         vpreco = request.POST.get('preco')
         produto.preco = vpreco 
 
-        # vimagem = request.FILES.get('imagem')
 
+        # vimagem = request.FILES.get('imagem')
+        
         produto.save()
 
     return redirect('entradas')
@@ -122,20 +131,24 @@ def adicionar(request, id):
     
     produto = get_object_or_404(Produtos, id=id)
     logproduto = LogEstoque(produto_id=id)
+    regestoque = SaldoEstoque(log_id=id)
 
     vquantidade = request.POST.get('add_value')
     vquantidade = int(vquantidade)
 
-    if vquantidade < 0:
+    if vquantidade <= 0:
         return HttpResponseBadRequest("A quantidade não pode ser negativa.")
-
-    produto.quantidade += vquantidade
+    else:
+        regestoque.quantidadet = produto.quantidade + vquantidade
+        produto.quantidade += vquantidade
 
     logproduto.tipo = 'Entrada'
     logproduto.quantidade = vquantidade
+    
 
     produto.save()
     logproduto.save()
+    regestoque.save()
 
     return redirect('entradas')
         
@@ -143,21 +156,24 @@ def adicionar(request, id):
 def retirar(request, id):
     produto = get_object_or_404(Produtos, id=id)
     logproduto = LogEstoque(produto_id=id)
+    regestoque = SaldoEstoque(log_id=id)
 
     vquantidade = request.POST.get('ret_value')
     vquantidade = int(vquantidade)
 
     if vquantidade < 0:
         return HttpResponseBadRequest("A quantidade não pode ser negativa.")
-
-    if vquantidade > produto.quantidade:
+    elif vquantidade > produto.quantidade:
         return HttpResponseBadRequest("A quantidade a ser retirada é maior do que a quantidade disponível.")
-
-    produto.quantidade -= vquantidade
+    else:
+        regestoque.quantidadet = produto.quantidade - vquantidade
+        produto.quantidade -= vquantidade
 
     logproduto.tipo = 'Saida'
     logproduto.quantidade = vquantidade
+    
 
+    regestoque.save()
     produto.save()
     logproduto.save()
 

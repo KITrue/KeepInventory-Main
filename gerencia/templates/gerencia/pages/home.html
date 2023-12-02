@@ -16,10 +16,9 @@
         {% include 'gerencia/partials/header.html' %}
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                fetch('/chart_data/')
+                fetch('/chart_dataa/')
                     .then(response => response.json())
                     .then(data => {
-                        
                         var ctx = document.getElementById('myBubbleChart').getContext('2d');
     
                         var myBubbleChart = new Chart(ctx, {
@@ -38,11 +37,18 @@
                                         position: 'left',
                                     },
                                 },
+                                plugins: {
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(context) {
+                                                return 'Quantidade: ' + context.parsed.y;
+                                            }
+                                        }
+                                    }
+                                }
                             },
-                            
                         });
                     });
-                    
             });
         </script>
 
