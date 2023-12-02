@@ -256,6 +256,7 @@ form_cadastro{
     color: #000000;
     padding: 0.2em 0.6em;
     border: none;
+    font-family: var(--letra-log);
     transition-duration: 0.6s;
 }
 .botaoVermelho:hover {
@@ -331,14 +332,21 @@ form_cadastro{
     height: fit-content;
 }
 .modal_imagem {
-    width: 100%;
-    height: auto;
+    max-width: 100%; 
+    max-height: 100%;
+    display: block; 
+    margin: auto; 
+    text-align: center; 
+    margin-top: 5%;
 }
 .close{
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    width: fit-content;
+    height: fit-content;
+    transition-duration: 0.8s;
 }
 
 .close:hover, .close:focus{
@@ -354,6 +362,12 @@ form_cadastro{
     margin: 10px;
 }
 
+.addret_alert{
+    color: red;
+    font-family: var(--letra-log);
+    font: 25px;
+}
+
 .model_container_text {
     display: flex;
     padding-bottom: 5px;
@@ -367,6 +381,8 @@ form_cadastro{
     font: 25px;
     font-family: var(--letra-log);
 }
+
+
 
 .botaoEditar {
     font-size: 1.2em;
@@ -432,7 +448,7 @@ form_cadastro{
     align-items: center;
 }	
 
-.modal_botoes_editar {
+.modal_botoes {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -570,33 +586,40 @@ form_cadastro{
 
 .lista_avisos {
     flex: 1;
-    padding: 24px;
-    margin: 1rem;
-    margin-top: 10px;
-    max-width: 40%;
+    padding: 15px;
+    margin: 15px;
+    margin-top: auto;
+    max-width: 30%;
     float: right;
-    background-color: #A6CF98;
+    background-color: #FBECB2;
     border-radius: 3%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    font-family: var(--letra-log);
-    
+    font-family: var(--letra-log);     
 }
 .lista_avisos li {
-    padding: 5px;
-    transition: background-color 0.3s;
+    background-color: #FFCD4B;
+    border-radius: 5px;
+    border: 1px solid #CCAF64; 
+    padding: 8px; 
+    margin: 0.5em 0; 
+    color: black;
+    font-family: var(--letra-log);
+    font-size: 11px;
     list-style: none;
-    border-radius: 3px;
 }
 
 .lista_avisos li:hover {
-    background-color: #f5f5f5;
+    background-color: #CCAF64;
 }
 
 .lista_avisos h2 {
     margin-top: 0;
+    display: flex;
     font-family: var(--letra-log);
     font-size: 20px;
     color: #000000;
+    align-items: center;
+    justify-content: center;
 }
 
 /* --------------------- avisos ------------------------- */
