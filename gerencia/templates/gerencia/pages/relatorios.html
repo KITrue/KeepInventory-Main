@@ -12,18 +12,47 @@
   </head>
   <body>
     {% include 'gerencia/partials/header.html' %}
-    <form action="{% url 'export_excl' %}" method="get" class="btn_form">
-      <div class="btn_container">
-        <a class="excl" href="{% url 'export_excl' %}">Baixar Relatório</a>
-      </div>
-    </form>
-    <div class="reg_container">
-      <ul class="reg_list">
-        {% for registro in registros %}
-          <li class="reg_items">Produto: {{ registro.produto.nome }} / Quantidade: {{ registro.quantidade }} / Tipo: {{ registro.tipo }} / Data Movimentação: {{ registro.data_movimentacao }}</li>
-        {% endfor %}
-      </ul>
-    </div>
+
+        <div class="filtro">
+          <div id="home__container">
+            <form action="" class="home__input__estilo">
+              <input class="home__input" id="barra_de_pesquisa" onkeyup="pesquisa_relatorio()" type="text" />
+              <button class="home__search__button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+          </div>
+        </div>
+
+        <div class="btn_container">
+          <form action="{% url 'export_excl' %}" method="get" class="btn_form">
+              <a class="excl" href="{% url 'export_excl' %}">Baixar Relatório</a>
+          </form>
+        </div>
+        
+        <div class="reg_container">
+          <ul class="reg_list">
+            {% for registro in registros %}
+              <li id="reg_pesquisa" class="reg_items">Produto: {{ registro.produto.nome }} / Quantidade: {{ registro.quantidade }} / Tipo: {{ registro.tipo }} / Data Movimentação: {{ registro.data_movimentacao }}</li>
+            {% endfor %}
+          </ul>
+        </div>
     {% include 'gerencia/partials/footer.html' %}
   </body>
+  <script>
+  function pesquisa_relatorio() {
+    var input = document.getElementById("barra_de_pesquisa").value.toLowerCase();
+    var registros = document.getElementsByClassName("reg_items");
+
+    for (var i = 0; i < registros.length; i++) {
+      var registro = registros[i];
+      var textoRegistro = registro.innerText.toLowerCase();
+
+      if (textoRegistro.includes(input)) {
+        registro.style.display = "block";
+      } else {
+        registro.style.display = "none";
+      }
+    }
+  } 
+
+  </script>
 </html>

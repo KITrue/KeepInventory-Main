@@ -12,6 +12,20 @@ function pesquisa_produto() {
         }
     }
 }
+function pesquisa_relatorio() {
+    let input = document.getElementById('barra_de_pesquisa').value.toLowerCase();
+    let registros = document.getElementsByClassName('reg_items');
+
+    for (let i = 0; i < registros.length; i++) {
+        let produtoNome = registros[i].getElementsByTagName('span')[0].innerText.toLowerCase();
+
+        if (!produtoNome.includes(input)) {
+            registros[i].style.display = "none";
+        } else {
+            registros[i].style.display = "";
+        }
+    }
+}
 
 function gera_cor(qtd=1){
     var bg_color = []
