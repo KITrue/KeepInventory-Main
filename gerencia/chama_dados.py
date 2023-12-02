@@ -23,7 +23,7 @@ class ChartDataView(View):
             grouped_data[log_id]['data'].append({
                 'x': item['data_e_quantidade'].timestamp() * 1000,  # Converte para milissegundos
                 'y': item['quantidade_total'],
-                'r': item['quantidade_total'],
+                'r': 30,
             })
 
         # Converte o dicionário agrupado em uma lista para o gráfico bubble
