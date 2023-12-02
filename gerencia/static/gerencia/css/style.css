@@ -578,6 +578,7 @@ form_cadastro{
     background-color: #A6CF98;
     border-radius: 3%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: var(--letra-log);
     
 }
 .lista_avisos li {
